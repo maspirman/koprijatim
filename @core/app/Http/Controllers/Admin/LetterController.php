@@ -191,8 +191,9 @@ class LetterController extends Controller
         return view(self::BASE_PATH.'download-letter')->with(['all_categories' => $all_categories,'all_temp' => $all_temp,'letter' => $letter]);
     }
      public function detail_letter($id){
-        $letter = letters::findOrfail($id);
-        return view(self::BASE_PATH.'detail-letter')->with(['letter' => $letter]);
+        $letter = Letters::findOrfail($id);
+        $lettertemp = LettersTemp::where(['id' => '$letter->temp_id'])->get();
+        return view(self::BASE_PATH.'detail-letter')->with(['letter' => $letter, 'lettertemp'=>$lettertemp]);
     }
 
     public function delete_letter(Request $request,$id){
@@ -202,7 +203,7 @@ class LetterController extends Controller
 
     public function letter_approve(Request $request, $id){
     $data = Letters::findOrFail($id);
-    $temp = Lettertemp::findOrFail($data->temp_id);
+    $temp = LettersTemp::findOrFail($data->temp_id);
 
     if ($temp->event_status == 1) {
         // Create an Event record if event_status is 1
@@ -406,7 +407,7 @@ class LetterController extends Controller
     public function letter_temp_logs(Request $request){
 
         if ($request->ajax()){
-            $temp = lettertemp::orderBy('id','desc')->get();
+            $temp = letterTemp::orderBy('id','desc')->get();
             return DataTables::of($temp)
                 ->addIndexColumn()
                 ->addColumn('checkbox',function ($row){
@@ -451,7 +452,7 @@ class LetterController extends Controller
     }
 
     public function delete_letter_temp_logs(Request $request,$id){
-        $temp_details = lettertemp::find($id);
+        $temp_details = letterTemp::find($id);
         $letter_payment_logs = letterPaymentLogs::where('temp_id',$temp_details->id)->first();
         if (!empty($letter_payment_logs)){
             return redirect()->back()->with(['msg' => __('Your Can not delete this temp, it already associated with a letter payment log.'),'type' => 'danger']);
@@ -461,7 +462,7 @@ class LetterController extends Controller
     }
 
     public function update_letter_temp_logs_status(Request $request){
-        lettertemp::where('id',$request->temp_id)->update(['status' => $request->temp_status]);
+        letterTemp::where('id',$request->temp_id)->update(['status' => $request->temp_status]);
         return redirect()->back()->with(['msg' => __('letters temp Status Updated...'),'type' => 'success']);
     }
 
@@ -540,7 +541,7 @@ class LetterController extends Controller
         $payment_logs->status = 'complete';
         $payment_logs->save();
 
-        $letter_temp = lettertemp::find($payment_logs->temp_id);
+        $letter_temp = LetterTemp::find($payment_logs->temp_id);
         $letter_temp->payment_status = 'complete';
         $letter_temp->status = 'complete';
         $letter_temp->save();
@@ -551,7 +552,7 @@ class LetterController extends Controller
 
         //update database
         $letter_payment_logs = letterPaymentLogs::find($id);
-        $letter_temp = lettertemp::find($letter_payment_logs->temp_id);
+        $letter_temp = LetterTemp::find($letter_payment_logs->temp_id);
 
         $order_mail = get_static_option('letter_temp_receiver_mail') ? get_static_option('letter_temp_receiver_mail') : get_static_option('site_global_email');
         $letter_details = letters::find($letter_temp->letter_id);

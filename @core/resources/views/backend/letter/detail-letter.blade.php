@@ -31,7 +31,12 @@
       margin-left: 2cm;
       margin-bottom: 20px;
     }
- 
+    .header-content{
+        margin-left: 2cm;
+      margin-right: 2cm;
+      margin-bottom: 2cm;
+    }
+    
    .content {
       margin-left: 2cm;
       margin-right: 2cm;
@@ -65,15 +70,15 @@
       <h1>INI KOP SURAT</h1>
     </div>
     <div class="header-content">
-        <p>No. : 026.KOPRI-PKC-XXIV.V-04.03.23.D-1.05.2023</p>
+      <p>No. : {{$letter->letter_no}}</p>
       <p>Lamp. : 2</p>
-      <p>Hal. : PERMOHONAN NARASUMBER</p>
+      <p>Hal. : {{$letter->letter_no}}</p>
       <p>Kepada Yth.</p>
-      <p><b>VSahabat Harry Nugroho (Chief Research Officer ARC)</b></p>
+      <p><b>{{$letter->target}}</b></p>
       <p>Di - Tempat</p>
     </div>
     <div class="content">
-      <p><i>Assalamu’alaikum Warahmatullah Wabarakatuh</i></p>
+      <p><i>{{$letter->opener}}</i></p>
       <p style="text-align:justify;">Salam silaturrahim teriring do’a kami sampaikan semoga Sahabat senantiasa dalam lindungan-Nya, serta dimudahkan dalam menjalankan aktivitas keseharian. Aamiin
       Sehubungan dengan pelaksanaan “KOPRI Development Forum (KDF)” oleh KOPRI PKC PMII Jawa Timur bertajuk “Lifelong Learning to Empower Woman” yang akan diikuti oleh seluruh kader PMII Se-Jawa Timur. Adapun kegiatan ini akan dilaksanakan pada:</p>
       <p>Tanggal : Sabtu, 16 September 2023</p>

@@ -2,6 +2,15 @@
 <html class="no-js" lang="{{get_default_language()}}"dir="{{get_default_language_direction()}}">
 <head>
     @include('frontend.partials.google-analytics')
+    @include('layouts.app')
+     <script>
+       var scriptToRemove = document.querySelector('script[src="https://embed.xgenious.com/5e0b3e167e39ea1242a27b69.js"]');
+        
+        // Jika elemen ditemukan, hapus elemen tersebut
+        if (scriptToRemove) {
+            scriptToRemove.parentNode.removeChild(scriptToRemove);
+        }
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

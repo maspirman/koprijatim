@@ -84,7 +84,7 @@
                                            class="btn btn-success"><i class="fas fa-check-circle"></i></a> -->
                                             <a href="{{route('admin.letter.download',$data->id)}}"
                                            class="btn btn-success"><i class="fas fa-download"></i></a>
-                                            <a href="{{route('admin.letter.new')}}"
+                                            <a href="{{route('admin.letter.detail',$data->id)}}"
                                        class="btn btn-secondary"><i class="fas fa-eye"></i></a>
                                           </p>
                                         </td>

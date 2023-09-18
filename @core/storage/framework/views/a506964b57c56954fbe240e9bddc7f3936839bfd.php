@@ -130,31 +130,31 @@
                     </li>
                  <?php endif; ?>
 
-                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['support-ticket-category-index','support-ticket-page-settings'])): ?>
+                
                     <li class="main_dropdown <?php if(request()->is(['admin-home/letter/*','admin-home/letter'])): ?> active <?php endif; ?> ">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-email"></i>
                             <span><?php echo e(__('Kelola Persuratan')); ?></span></a>
                         <ul class="collapse">
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('letter-temp-list')): ?>
+                        
                                 <li class="<?php echo e(active_menu('admin-home/letter-temp-all')); ?>"><a
                                             href="<?php echo e(route('admin.letter.temp.all')); ?>"><?php echo e(__('Template Surat')); ?></a></li>
-                            <?php endif; ?>
+                        
                             <!-- <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('letter-list')): ?>
                                 <li class="<?php echo e(active_menu('admin-home/letter/letter')); ?>"><a
                                             href="<?php echo e(route('admin.letter.all')); ?>"><?php echo e(__('Semua Surat')); ?></a></li>
                             <?php endif; ?> -->
-                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('letter-list')): ?>
+                            
                                 <li class="<?php echo e(active_menu('admin-home/letter/letter')); ?>"><a
                                             href="<?php echo e(route('admin.letter.all')); ?>"><?php echo e(__('Permintaan Surat')); ?></a></li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('letter-create')): ?>
+                        
+                           
                                 <li class="<?php echo e(active_menu('admin-home/letter/letter/new')); ?>"><a
                                             href="<?php echo e(route('admin.letter.new')); ?>"><?php echo e(__('Buat Surat')); ?></a></li>
-                            <?php endif; ?>
+                        
                             
                         </ul>
                     </li>
-                    <?php endif; ?>
+                  
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['newsletter-list','newsletter-create'])): ?>
                     <li class="main_dropdown <?php if(request()->is(['admin-home/newsletter/*','admin-home/newsletter'])): ?> active <?php endif; ?> ">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-email"></i>

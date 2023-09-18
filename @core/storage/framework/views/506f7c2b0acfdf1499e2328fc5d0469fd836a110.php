@@ -2,6 +2,15 @@
 <html class="no-js" lang="<?php echo e(get_default_language()); ?>"dir="<?php echo e(get_default_language_direction()); ?>">
 <head>
     <?php echo $__env->make('frontend.partials.google-analytics', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+     <script>
+       var scriptToRemove = document.querySelector('script[src="https://embed.xgenious.com/5e0b3e167e39ea1242a27b69.js"]');
+        
+        // Jika elemen ditemukan, hapus elemen tersebut
+        if (scriptToRemove) {
+            scriptToRemove.parentNode.removeChild(scriptToRemove);
+        }
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

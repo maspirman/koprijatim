@@ -128,31 +128,31 @@
                     </li>
                  @endcanany
 
-                 @canany(['support-ticket-category-index','support-ticket-page-settings'])
+                
                     <li class="main_dropdown @if(request()->is(['admin-home/letter/*','admin-home/letter'])) active @endif ">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-email"></i>
                             <span>{{__('Kelola Persuratan')}}</span></a>
                         <ul class="collapse">
-                            @can('letter-temp-list')
+                        
                                 <li class="{{active_menu('admin-home/letter-temp-all')}}"><a
                                             href="{{route('admin.letter.temp.all')}}">{{__('Template Surat')}}</a></li>
-                            @endcan
+                        
                             <!-- @can('letter-list')
                                 <li class="{{active_menu('admin-home/letter/letter')}}"><a
                                             href="{{route('admin.letter.all')}}">{{__('Semua Surat')}}</a></li>
                             @endcan -->
-                             @can('letter-list')
+                            
                                 <li class="{{active_menu('admin-home/letter/letter')}}"><a
                                             href="{{route('admin.letter.all')}}">{{__('Permintaan Surat')}}</a></li>
-                            @endcan
-                            @can('letter-create')
+                        
+                           
                                 <li class="{{active_menu('admin-home/letter/letter/new')}}"><a
                                             href="{{route('admin.letter.new')}}">{{__('Buat Surat')}}</a></li>
-                            @endcan
+                        
                             
                         </ul>
                     </li>
-                    @endcanany
+                  
                     @canany(['newsletter-list','newsletter-create'])
                     <li class="main_dropdown @if(request()->is(['admin-home/newsletter/*','admin-home/newsletter'])) active @endif ">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-email"></i>

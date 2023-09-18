@@ -28,6 +28,9 @@
                             <input type="password" id="password" name="password" >
                             <i class="ti-lock"></i>
                         </div>
+                        <div class="form-gp">
+                            <input type="checkbox" style="width:15px; margin-top:5px;" id="showPassword"> Show Password
+                        </div>
                         <div class="row mb-4 rmber-area">
                             <div class="col-6">
                                 <div class="custom-control custom-checkbox mr-sm-2">
@@ -68,6 +71,18 @@
 
 
 @section('scripts')
+ <script>
+        const passwordInput = document.getElementById("password");
+        const showPasswordCheckbox = document.getElementById("showPassword");
+
+        showPasswordCheckbox.addEventListener("change", function() {
+            if (showPasswordCheckbox.checked) {
+                passwordInput.type = "text"; // Tampilkan kata sandi
+            } else {
+                passwordInput.type = "password"; // Sembunyikan kata sandi kembali
+            }
+        });
+    </script>
     <script>
         (function($){
         "use strict";

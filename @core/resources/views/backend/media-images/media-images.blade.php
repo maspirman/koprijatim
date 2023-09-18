@@ -36,6 +36,13 @@
         .img-alt-wrap input {
             width: calc(100% - 60px);
         }
+        @media (max-width: 768px) {
+      .media-uploader-image-list{
+          width: auto; /* Menghapus properti width */
+      }
+
+}
+
     </style>
 @endsection
 @section('content')

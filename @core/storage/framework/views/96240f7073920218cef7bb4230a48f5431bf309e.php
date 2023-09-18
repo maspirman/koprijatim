@@ -55,6 +55,9 @@
                             <div class="col-6 text-right">
                                 <a class="d-block" href="<?php echo e(route('user.register')); ?>"><?php echo e(__('Create New account?')); ?></a>
                                 <a href="<?php echo e(route('user.forget.password')); ?>"><?php echo e(__('Forgot Password?')); ?></a>
+                                <p>
+                                    <a href="<?php echo e(route('admin.login')); ?>"><?php echo e(__('Login Admin')); ?></a>
+                                </p>
                             </div>
                             <div class="col-lg-12">
                                 <div class="social-login-wrap">

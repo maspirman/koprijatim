@@ -42,19 +42,36 @@
     <nav class="navbar navbar-area navbar-expand-lg charity-nav-03 has-topbar nav-style-02">
         <div class="container nav-container">
             <div class="responsive-mobile-menu">
-                <div class="logo-wrapper">
-                    <a href="http://localhost/koprijatim.or.id" class="logo">
-                                                    <img src="http://localhost/koprijatim.or.id/assets/uploads/media-uploader/logo-kopri-jatim1694179467.png" alt="">
-                                            </a>
+                <style>@media (max-width: 767px) {
+    /* Saat tampilan di perangkat mobile (lebar kurang dari atau sama dengan 767px) */
+    .logo-wrapper {
+        padding-top: 20px !important;
+        position: initial !important;/
+    }
+}
+</style>
+                <div class="logo-wrapper" style="padding-top:40px;">
+                    <a href="{{url('/')}}" class="logo">
+                        @if(!empty(filter_static_option_value('site_white_logo',$global_static_field_data)))
+                            {!! render_image_markup_by_attachment_id(filter_static_option_value('site_white_logo',$global_static_field_data)) !!}
+                        @else
+                            <h2 class="site-title">{{filter_static_option_value('site_title',$global_static_field_data)}}</h2>
+                        @endif
+                    </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bizcoxx_main_menu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-            <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
-                                        <ul class="navbar-nav ">
-                                            {!! render_frontend_menu($primary_menu) !!}
-                                        </ul>
+            <div class="collapse navbar-collapse" id="bizcoxx_main_menu" style="z-index:99;">
+                <ul class="navbar-nav">
+                   {!! render_frontend_menu($primary_menu) !!}
+                    <li class="search-lists">
+                      @if(!empty(get_static_option('home_page_navbar_search_show_hide')))
+                        <x-frontend.search-popup/>
+                        @endif
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -189,8 +206,22 @@
             </div>
         </div>
         <div class="row">
-            <img src="{{asset('assets/frontend/img/inpo.png')}}">
+            <img class="floating-image"  src="{{asset('assets/frontend/img/inpo.png')}}">
         </div>
+        <style>
+            .floating-image {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+        </style>
     </div>
 </section>
 @endif
@@ -222,7 +253,7 @@
                         <div class="single-donation-category-item"
                                 {!! render_background_image_markup_by_attachment_id($data->image,'grid') !!}
                         >
-                            <a href="{{route('frontend.donations.category',['id' => $data->id,'any' => Str::slug($data->title) ?? '' ])}}">
+                            <a href="{{route('frontend.events.category',['id' => $data->id,'any' => Str::slug($data->title) ?? '' ])}}">
 
                                 <div class="hover-content">
                                     <h3 class="title">{{$data->title}}</h3>
@@ -426,7 +457,7 @@
                 <div class="global-carousel-init slider-dots"
                      data-loop="true"
                      data-desktopitem="4"
-                     data-mobileitem="1"
+                     data-mobileitem="2"
                      data-tabletitem="2"
                      data-dots="true"
                      data-nav="true"
